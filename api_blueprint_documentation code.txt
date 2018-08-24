@@ -1,0 +1,2 @@
+aglio --theme-variables flatly -i documentation.apib -o output.html
+start ./output.html

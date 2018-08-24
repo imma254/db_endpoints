@@ -42,6 +42,7 @@ class Answers(db.Model):
     user_id = db.Column(db.Integer)
 
 
+
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -64,7 +65,7 @@ def token_required(f):
 
 @app.route('/')
 def index():
-	return 'StackOverflow-Lite db endpoints'
+	return jsonify({'message': 'StackOverflow-Lite db endpoints'})
 
 
 @app.route('/auth/signup', methods=['POST'])
@@ -176,7 +177,7 @@ def delete_user(current_user, public_id):
     return jsonify({'message': 'user has been deleted'})
 
 
-@app.route('/login')
+@app.route('/auth/login')
 def login():
     auth = request.authorization
 
@@ -190,6 +191,7 @@ def login():
     if check_password_hash(user.password, auth.password):
         token = jwt.encode({'public_id': user.public_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
         return jsonify({'token': token.decode('UTF-8')})
+        return jsonify({'message': 'iko sawa'})
     return make_response('could not verify', 401, {'WWW-Authenticate': 'Basic realm="login required!"'})
 
 

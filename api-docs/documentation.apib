@@ -1,0 +1,207 @@
+FORMAT: 1A
+HOST: https:/limitless-mesa-28834.herokuapp.com
+
+# StackOverflow-Lite
+
+StackOverflow-Lite is a simple API allowing users to view posted questions, answer posted questions, post their own questions and up vote or down vote questions and answers. 
+
+# StackOverflow-Lite API Root [/]
+
+This resource does not have any attributes. Instead it offers the initial API affordances in the form of the links in the JSON body.
+
+It is recommend to follow the “url” link values or Location headers where applicable to retrieve resources. Instead of constructing your own URLs, to keep your client decoupled from implementation details.
+
+## Retrieve the Entry Point [GET]
+
++ Response 200 (application/json)
+
+        {
+            "questions_url": "/questions"
+        }
+
+## Group Question
+
+Resources related to questions in the API.
+
+## Question [/questions/{question_id}]
+
+A Question object has the following attributes:
+
++ id - This is the id of the question and it is a primary_key.
++ topic - This is the question's topic.
++ question - This is the actual question asked.
++ user_id - This is the id of the question's author
++ votes - The total no. of votes received for the question.
+
++ Parameters
+    + question_id: 1 (required, number) - ID of the Question in form of an integer
+
+### View a Questions Detail [GET]
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "question": "Favourite programming language?",
+            "topic": "Programming",
+            "user_id": 3,
+            "url": "/questions/1",
+            "answers": [
+                {
+                    "answer": "Swift",
+                    "url": "/questions/1/answers/1",
+                    "votes": 2048
+                }, {
+                    "answer": "Python",
+                    "url": "/questions/1/answers/2",
+                    "votes": 1024
+                }, {
+                    "answer": "Objective-C",
+                    "url": "/questions/1/answers/3",
+                    "votes": 512
+                }, {
+                    "answer": "Ruby",
+                    "url": "/questions/1/answers/4",
+                    "votes": 256
+                }
+            ]
+        }
+
+    ### View an Answer [GET]
+
++ Response 200 (application/json)
+
+       
+                {
+                    "answer": "Swift",
+                    "url": "/questions/1/answers/1",
+                    "votes": 2048
+                }, {
+                    "answer": "Python",
+                    "url": "/questions/1/answers/2",
+                    "votes": 1024
+                }, {
+                    "answer": "Objective-C",
+                    "url": "/questions/1/answers/3",
+                    "votes": 512
+                }, {
+                    "answer": "Ruby",
+                    "url": "/questions/1/answers/4",
+                    "votes": 256
+                }
+
+## Question [/questions/{question_id}/answers/{answer_id}]
+
++ Parameters
+    + question_id: 1 (required, number) - ID of the Question in form of an integer
+    + answer_id: 1 (required, number) - ID of the Answer in form of an integer
+
+### Update an Answer [PUT]
+
+This action allows you to vote on a question's answer.
+
++ Response 201
+
+    + Headers
+
+            Location: /questions/1
+
+## Questions Collection [/questions{?page}]
+
++ Parameters
+    + page: 1 (optional, number) - The page of questions to return
+
+### List All Questions [GET]
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Link: </questions?page=2>; rel="next"
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "question": "Favourite programming language?",
+                    "topic": "Programming",
+                    "user_id": 3,
+                    "url": "/questions/1",
+                    "answers": [
+                        {
+                            "answer": "Swift",
+                            "url": "/questions/1/answers/1",
+                            "votes": 2048
+                        }, {
+                            "answer": "Python",
+                            "url": "/questions/1/answers/2",
+                            "votes": 1024
+                        }, {
+                            "answer": "Objective-C",
+                            "url": "/questions/1/answers/3",
+                            "votes": 512
+                        }, {
+                            "answer": "Ruby",
+                            "url": "/questions/1/answers/4",
+                            "votes": 256
+                        }
+                    ]
+                }
+            ]
+
+
+### List All Answers [GET]
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Link: </answers?page=1>; rel="next"
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "answers": "Favourite programming language?",
+                    "topic": "Programming",
+                    "user_id": 3,
+                    "url": "/questions/1",
+                }
+            ]
+
+### Create a New Answer [POST]
+
+You may post your own answer using this action. It takes a JSON object containing a question and a collection of answers in the form of answers.
+
++ question (string) - The question
++ answer (array[string]) - A collection of answers.
+
++ Request (application/json)
+
+        {            
+            "question": "Favourite programming language?",
+            "question": "JAVA",
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /questions/{question_id}/answer
+
+    + Body
+
+            {
+                "id": 1,
+                "answer": "Swift",
+                "user_id": "/questions/1/answers/1",
+                "votes": 20
+            }
+
+
+
+            
+
+            
