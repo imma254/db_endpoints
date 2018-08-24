@@ -1,5 +1,5 @@
 # Flask-API endpoints using databases
-[![Build Status](https://travis-ci.org/imma254/API-endpoints.svg?branch=master)](https://travis-ci.org/imma254/API-endpoints)<a href="//www.dmca.com/Protection/Status.aspx?ID=0e62a6b4-0fef-427f-816d-7fbc57964a14" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=0e62a6b4-0fef-427f-816d-7fbc57964a14"  alt="DMCA.com Protection Status" /></a>  
+[![Build Status](https://travis-ci.org/imma254/API-endpoints.svg?branch=master)](https://travis-ci.org/imma254/API-endpoints)
 
 ## Overview
 Creation of the website's flask API endpoints.
@@ -49,3 +49,5 @@ User can down vote a question	| /questions/question_id/upvote | PUT
 
 ## Relevant Pivotal Tracker Stories
  - #159925230
+ 
+<a href="//www.dmca.com/Protection/Status.aspx?ID=0e62a6b4-0fef-427f-816d-7fbc57964a14" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=0e62a6b4-0fef-427f-816d-7fbc57964a14"  alt="DMCA.com Protection Status" /></a>  
